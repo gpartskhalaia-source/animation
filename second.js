@@ -1,20 +1,29 @@
-const productPrice = 25;
+let products = ["Apple", "Banana", "Orange"];
 
-let userName = prompt("What is your name?");
+// 1. ბოლოში Mango დამატება
+products.push("Mango");
+console.log(products);
 
-let quantity = Number(prompt("How many products would you like to buy?"));
+// 2. დასაწყისში Strawberry დამატება
+products.unshift("Strawberry");
+console.log(products);
 
-let totalPrice = productPrice * quantity;
+// 3. ბოლო ელემენტის წაშლა
+products.pop();
+console.log(products);
 
-let money = Number(prompt("How much money do you have?"));
+// 4. პირველი ელემენტის წაშლა
+products.shift();
+console.log(products);
 
-console.log(userName + ", the total price is " + totalPrice + " GEL.");
+// 5. არის თუ არა Banana
+console.log(products.includes("Banana"));
 
-if (money >= totalPrice) {
-    let change = money - totalPrice;
 
-    console.log("You can buy the product.");
-    console.log("Your change is " + change + " GEL.");
-} else {
-    console.log("You don't have enough money.");
-}
+let age = 18;
+
+let result = age >= 18
+    ? "Entry allowed"
+    : "Entry denied";
+
+console.log(result);
