@@ -1,31 +1,65 @@
+
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 30px;
 }
 
-.loader {
-    width: 60px;
-    height: 60px;
-
-    border: 8px solid lightgray;
-    border-top: 8px solid blue;
-    border-radius: 50%;
-
-    animation-name: loading;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+.container {
+    background-color: white;
+    padding: 20px;
+    width: 400px;
+    border: 1px solid #ddd;
 }
 
-@keyframes loading {
-
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
+h1 {
+    color: darkblue;
 }
+
+.balance-box {
+    background-color: lightblue;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 10px;
+    background-color: darkblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#deposit {
+    background-color: green;
+}
+
+#withdraw {
+    background-color: red;
+}
+
+#reset {
+    background-color: gray;
+}
+
+#history {
+    padding-left: 20px;
+}
+
+#message {
+    font-weight: bold;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
