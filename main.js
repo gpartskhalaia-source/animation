@@ -1,134 +1,58 @@
 
-let balance = 1000;
-let transactionCount = 0;
-
-// HTML ელემენტების მოძებნა
-const balanceElement = document.querySelector("#balance");
-const amountInput = document.querySelector("#amount");
-
-const depositBtn = document.querySelector("#deposit");
-const withdrawBtn = document.querySelector("#withdraw");
-const resetBtn = document.querySelector("#reset");
-
-const history = document.querySelector("#history");
-const message = document.querySelector("#message");
-
-const lastTransaction = document.querySelector("#lastTransaction");
-const totalTransactions = document.querySelector("#totalTransactions");
-
-// ბალანსის განახლება
-function updateBalance() {
-    balanceElement.textContent = balance.toFixed(2);
-}
-
-// შეტყობინების ჩვენება
-function showMessage(text, type) {
-    message.textContent = text;
-    message.classList.remove("success", "error");
-    message.classList.add(type);
-}
-
-// ოპერაციის ისტორიაში დამატება
-function addTransaction(type, amount) {
-
-    const li = document.createElement("li");
-
-    let transactionText;
-
-    if (type === "Deposit") {
-        transactionText = `Deposit +₾${amount.toFixed(2)}`;
-    } else {
-        transactionText = `Withdraw -₾${amount.toFixed(2)}`;
+class Animal {
+    constructor(name) {
+        this.name = name;
     }
 
-    li.textContent = transactionText;
-
-    history.appendChild(li);
-
-    transactionCount++;
-
-    lastTransaction.textContent =
-        `Last transaction: ${transactionText}`;
-
-    totalTransactions.textContent =
-        `Total transactions: ${transactionCount}`;
-}
-
-// თანხის შეტანა
-function depositMoney() {
-
-    const amount = Number(amountInput.value);
-
-    if (amountInput.value.trim() === "" ||
-        !Number.isFinite(amount) || amount <= 0) {
-
-        showMessage("❌ Please enter a valid amount!", "error");
-        return;
+    makeSound() {
+        console.log("ცხოველი გამოსცემს ხმას");
     }
 
-    balance += amount;
-
-    updateBalance();
-
-    addTransaction("Deposit", amount);
-
-    showMessage("✅ Money deposited successfully!", "success");
-
-    amountInput.value = "";
+    eat() {
+        console.log(`${this.name} ჭამს`);
+    }
 }
 
-// თანხის გამოტანა
-function withdrawMoney() {
-
-    const amount = Number(amountInput.value);
-
-    if (amountInput.value.trim() === "" ||
-        !Number.isFinite(amount) || amount <= 0) {
-
-        showMessage("❌ Please enter a valid amount!", "error");
-        return;
+// ძაღლის კლასი
+class Dog extends Animal {
+    constructor(name) {
+        super(name);
     }
 
-    if (amount > balance) {
-        showMessage("❌ Insufficient funds!", "error");
-        return;
+    makeSound() {
+        console.log("ჰამ! ჰამ!");
+    }
+}
+
+// კატის კლასი
+class Cat extends Animal {
+    constructor(name) {
+        super(name);
     }
 
-    balance -= amount;
-
-    updateBalance();
-
-    addTransaction("Withdraw", amount);
-
-    showMessage("✅ Money withdrawn successfully!", "success");
-
-    amountInput.value = "";
+    makeSound() {
+        console.log("მიაუ!");
+    }
 }
 
-// მონაცემების განულება
-function resetBank() {
+// ობიექტების შექმნა
+const animal = new Animal("ცხოველი");
+const dog = new Dog("ბობი");
+const cat = new Cat("მია");
 
-    balance = 1000;
-    transactionCount = 0;
+// მეთოდების გამოძახება
+animal.makeSound();
+animal.eat();
 
-    updateBalance();
+dog.makeSound();
+dog.eat();
 
-    history.innerHTML = "";
+cat.makeSound();
+cat.eat();
 
-    lastTransaction.textContent = "Last transaction: None";
-    totalTransactions.textContent = "Total transactions: 0";
+// პოლიმორფიზმი
+const animals = [dog, cat];
 
-    amountInput.value = "";
-
-    showMessage("✅ Account reset successfully!", "success");
-}
-
-// ღილაკებზე ფუნქციების მიბმა
-depositBtn.addEventListener("click", depositMoney);
-
-withdrawBtn.addEventListener("click", withdrawMoney);
-
-resetBtn.addEventListener("click", resetBank);
-
-// საწყისი ბალანსის ჩვენება
-updateBalance();
+animals.forEach(animal => {
+    animal.makeSound();
+});
